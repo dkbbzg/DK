@@ -1,19 +1,15 @@
 <template>
-  <div class="login-page">
+  <div class="register-page">
     <div class="box">
       <div class="welcome">
         <p>Welcome</p>
-        <p>to login</p>
+        <p>to register</p>
       </div>
-      <p class="tips">Please enter your account number and password to log in.</p>
-      <div><input type="text" placeholder="Account Number" v-model="user" @keyup.enter="onSubmit"></div>
-      <div><input type="password" placeholder="Password" v-model="pwd" @keyup.enter="onSubmit"></div>
-      <div class="button-login" @click="onSubmit">Login</div>
-      <div class="link">
-        <div class="pwd">Password</div>
-        <span>|</span>
-        <div class="register" @click="register">Register</div>
-      </div>
+      <p class="tips">You can register an account on this page to log in to DK</p>
+      <div><input type="text" placeholder="Please input your account number" v-model="newAccount"></div>
+      <div><input type="password" placeholder="Please input your password" v-model="newPassword"></div>
+      <div><input type="password" placeholder="Please confirm your password" v-model="confirmPassword"></div>
+      <div class="button-login">Register</div>
     </div>
   </div>
 </template>
@@ -21,61 +17,26 @@
 <script>
 
 export default {
-  name: 'login',
+  name: 'register',
   data () {
     return {
-      loading: false,
-      user: '',
-      pwd: '',
-      value2: true
+      newAccount: '',
+      newPassword: '',
+      confirmPassword: ''
     }
   },
   methods: {
-    onSubmit(e) {
-      // var that = this;
-      var e = e.target;
-      e.blur()
-      this.loading = true
-      // this.axios.post('http://127.0.0.1:8081/login', {
-      //   account: that.account,
-      //   password: that.password
-      // }).then(response => {
-      //   console.log(response)
-      // }).catch(error => {
-      //   console.log(error)
-      // })
-      if (this.user === 'admin' && this.pwd === '000000') {
-        this.loading = false
-        this.$store.state.login.isLogin = true;
-        this.$router.go(-1)
-      } else {
-        this.loading = false
-        this.open('Please enter the correct account and password', 'Login failed')
-      }
-    },
-    // open message box
-    open (content, title) {
-      this.$alert(content, title, {
-        confirmButtonText: 'Enter',
-        type: 'error',
-        center: true
-      })
-    },
-    // Turn to register page
-    register () {
-      this.$router.push('/register')
-    }
   }
 }
 
 </script>
 
 <style scoped>
-.login-page {
+.register-page {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.login-page::before {
+.register-page::before {
   content: "";
   position: absolute;
   top: 0;
@@ -96,7 +57,6 @@ export default {
 }
 
 .box > p {
-  font-size: 70px;
   color: #fff;
   letter-spacing: 1.6px;
 }
