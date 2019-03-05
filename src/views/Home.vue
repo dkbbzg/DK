@@ -1,6 +1,5 @@
 <template>
-  <div class="home">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+  <div class="home" v-if="this.$store.state.login.isLogin">
     
   </div>
 </template>
@@ -11,8 +10,8 @@
 
 export default {
   name: 'home',
-  created() {
-    if (true) {
+  beforeCreate() {
+    if (!this.$store.state.login.isLogin) {
       this.$router.push({ path: 'Login' })
     }
   }
