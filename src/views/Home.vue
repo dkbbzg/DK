@@ -13,7 +13,7 @@ export default {
   name: 'home',
   created() {
     if (true) {
-      this.$router.push({ path: 'login' })
+      this.$router.push({ path: 'Login' })
     }
   }
   // components: {
