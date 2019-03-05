@@ -1,8 +1,12 @@
 import Vue from 'vue'
+import './plugins/axios'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store from './vuex/store'
 import './plugins/element.js'
+
+// Vue.component(Input.name, Input);
+
 
 Vue.config.productionTip = false
 
