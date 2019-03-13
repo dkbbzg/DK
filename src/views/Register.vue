@@ -6,10 +6,10 @@
         <p>to register</p>
       </div>
       <p class="tips">You can register an account on this page to log in to DK</p>
-      <div><input type="text" placeholder="Please input your account number" v-model="newAccount"></div>
-      <div><input type="password" placeholder="Please input your password" v-model="newPassword"></div>
-      <div><input type="password" placeholder="Please confirm your password" v-model="confirmPassword"></div>
-      <div class="button-login">Register</div>
+      <div><input type="text" placeholder="Please input your account number" v-model="registerAccount"></div>
+      <div><input type="password" placeholder="Please input your password" v-model="registerPassword"></div>
+      <div><input type="text" placeholder="Please Input your email" v-model="registerEmail"></div>
+      <div class="button-login" @click="register">Register</div>
     </div>
   </div>
 </template>
@@ -20,12 +20,44 @@ export default {
   name: 'register',
   data () {
     return {
-      newAccount: '',
-      newPassword: '',
-      confirmPassword: ''
+      registerAccount: '',
+      registerPassword: '',
+      registerEmail: ''
     }
   },
   methods: {
+    register () {
+      if (this.registerAccount == '') {
+        this.open('Account nubmer can not be blank', 0)
+      }
+      else if (this.registerPassword.length < 6) {
+        this.open('Password\'s length must more than 6', 0)
+      }
+      else {
+        this.open('', 1)
+      }
+    },
+    // open message box
+    open (content, type) {
+      var that = this;
+      if (type) {
+        that.$message({
+          message: 'Register Success',
+          type: 'success',
+          duration: 1000,
+          onClose: function() {
+            that.$router.go(-1)
+          }
+        })
+      }
+      else {
+        that.$message({
+          message: content,
+          type: 'error',
+          duration: 1500
+        })
+      }
+    },
   }
 }
 

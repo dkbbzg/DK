@@ -33,8 +33,8 @@ export default {
   methods: {
     onSubmit(e) {
       // var that = this;
-      var e = e.target;
-      e.blur()
+      var element = e.target;
+      element.blur()
       this.loading = true
       // this.axios.post('http://127.0.0.1:8081/login', {
       //   account: that.account,
