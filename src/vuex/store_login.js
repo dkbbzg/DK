@@ -2,7 +2,7 @@ export default {
   state: {
     show: 1,
     display: 1,
-    isLogin: false
+    isLogin: true
   },
   // computed(),用 $store.getters.not_show 来触发
   getters: {

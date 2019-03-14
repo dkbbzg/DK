@@ -37,4 +37,9 @@ body,
   width: 0;
   height: 0;
 }
+.w { width: 100%; }
+.h { height: 100%; }
+.fw-n { font-weight: normal; }
+.fw-b { font-weight: bold; }
+.color-f { color: #fff; }
 </style>
