@@ -6,13 +6,13 @@
         <p>to login</p>
       </div>
       <p class="tips">Please enter your account number and password to log in.</p>
-      <div><input type="text" placeholder="Account Number" v-model="user" @keyup.enter="onSubmit"></div>
-      <div><input type="password" placeholder="Password" v-model="pwd" @keyup.enter="onSubmit"></div>
+      <div><input type="text" placeholder="Account Number" v-model="account" @keyup.enter="onSubmit"></div>
+      <div><input type="password" placeholder="Password" v-model="password" @keyup.enter="onSubmit"></div>
       <div class="button-login" @click="onSubmit">Login</div>
       <div class="link">
         <div class="pwd">Password</div>
         <span>|</span>
-        <div class="register" @click="register">Register</div>
+        <div class="register" @click="toRegister">Register</div>
       </div>
     </div>
   </div>
@@ -25,32 +25,55 @@ export default {
   data () {
     return {
       loading: false,
-      user: '',
-      pwd: '',
+      account: '',
+      password: '',
       value2: true
     }
   },
   methods: {
     onSubmit(e) {
-      // var that = this;
+      var that = this;
       var element = e.target;
-      element.blur()
-      this.loading = true
-      // this.axios.post('http://127.0.0.1:8081/login', {
-      //   account: that.account,
-      //   password: that.password
-      // }).then(response => {
-      //   console.log(response)
-      // }).catch(error => {
-      //   console.log(error)
-      // })
-      if (this.user === 'admin' && this.pwd === '000000') {
-        this.loading = false
-        this.$store.state.login.isLogin = true;
-        this.$router.go(-1)
-      } else {
-        this.loading = false
-        this.open('Please enter the correct account and password', 'Login failed')
+      if (this.account == '') {
+        this.$message({
+          message: 'Please input your account',
+          center: true
+        });
+      }
+      else if (this.password == '') {
+        this.$message({
+          message: 'Please input your password',
+          center: true
+        });
+      }
+      else {
+        this.loading = true
+        this.axios.post('http://127.0.0.1:8081/users/login', {
+          account: that.account,
+          password: that.password
+        }).then(req => {
+          let data = req.data
+          if (data.status == 0) {
+            this.loading = false
+            this.open('Sorry, there is no this account, please input right account or register a new account.', 'Login failed')
+          }
+          else if (data.status == 1) {
+            this.loading = false
+            this.open('Sorry, this is a wrong password, please input right password', 'Login failed')
+          }
+          else if (data.status == 2) {
+            this.loading = false
+            this.$store.commit('userState', {
+              isLogin: true,
+              UserGUID: data.UserGUID,
+              UserName: data.UserName,
+              UserIcon: data.UserIcon,
+            })
+            this.$router.go(-1)
+          }
+        }).catch(error => {
+          console.log(error)
+        })
       }
     },
     // open message box
@@ -62,7 +85,7 @@ export default {
       })
     },
     // Turn to register page
-    register () {
+    toRegister () {
       this.$router.push('/register')
     }
   }

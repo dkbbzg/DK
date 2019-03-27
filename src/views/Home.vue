@@ -1,5 +1,5 @@
 <template>
-  <div class="home" v-if="this.$store.state.login.isLogin">
+  <div class="home">
     <div class="menu">
       <div class="logo">DK</div>
       <User></User>
@@ -48,11 +48,6 @@ export default {
   data() {
     return {
       menuShow: false
-    }
-  },
-  beforeCreate() {
-    if (!this.$store.state.login.isLogin) {
-      this.$router.push({ path: 'Login' })
     }
   },
   components: {

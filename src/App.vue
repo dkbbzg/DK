@@ -39,6 +39,8 @@ body,
 }
 .w { width: 100%; }
 .h { height: 100%; }
+.p-r { position: relative; }
+.p-a { position: absolute; }
 .fw-n { font-weight: normal; }
 .fw-b { font-weight: bold; }
 .color-f { color: #fff; }
