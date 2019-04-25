@@ -2,7 +2,7 @@
   <div class="login-page">
     <div class="box">
       <div class="welcome">
-        <p>Welcome</p>
+        <p>Welcome11</p>
         <p>to login</p>
       </div>
       <p class="tips">Please enter your account number and password to log in.</p>

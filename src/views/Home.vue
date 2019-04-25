@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="menu">
-      <div class="logo">DK</div>
+      <div class="logo">wwDK</div>
       <User></User>
       <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#1c2c36" text-color="#fff" active-text-color="#ffd04b">
         <el-submenu index="1">
