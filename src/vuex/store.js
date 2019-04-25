@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import vuex from 'vuex'
-import storeLogin from './store_login.js'
+import storeLogin from './store_login'
+import storeUser from './store_user'
 
 Vue.use(vuex)
 
 export default new vuex.Store({
   modules: {
-    login: storeLogin
+    login: storeLogin,
+    user: storeUser
   }
 })

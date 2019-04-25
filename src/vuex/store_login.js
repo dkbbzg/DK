@@ -12,8 +12,8 @@ export default {
   },
   // mutations 多个state的操作,用 $store.commit('changeShowState') 来触发
   mutations: {
-    changeShowState (state) {
-      state.show = state.show ? 0 : 1
+    loginStatus (state, status) {
+      state.isLogin = status
     },
     changeDisplayState (state) {
       state.display = state.show ? 0 : 1
@@ -22,7 +22,7 @@ export default {
   // actions 多个mutations的操作,用 $store.dispatch('changeShowDisplayState') 来触发
   actions: {
     changeShowDisplayState (context) {
-      context.commit('changeShowState')
+      context.commit('loginStatus')
       context.commit('changeDisplayState')
     }
   }
